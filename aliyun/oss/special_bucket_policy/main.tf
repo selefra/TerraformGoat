@@ -9,53 +9,69 @@ resource "alicloud_oss_bucket" "Create_Bucket" {
   force_destroy = true
   policy        = <<POLICY
 {
-	"Version": "1",
-	"Statement": [{
-		"Effect": "Allow",
-		"Action": [
-			"oss:GetObject",
-			"oss:GetObjectAcl",
-			"oss:ListObjects",
-			"oss:RestoreObject",
-			"oss:GetVodPlaylist",
-			"oss:ListObjectVersions",
-			"oss:GetObjectVersion",
-			"oss:GetObjectVersionAcl",
-			"oss:RestoreObjectVersion"
-		],
-		"Principal": [
-			"*"
-		],
-		"Resource": [
-			"acs:oss:*:*:*/*"
-		],
-		"Condition": {
-			"StringEquals": {
-          		"acs:UserAgent": [
-					"test"
-				]
-			}
-		}
-	}, {
-		"Effect": "Allow",
-		"Action": [
-			"oss:ListObjects",
-			"oss:GetObject"
-		],
-		"Principal": [
-			"*"
-		],
-		"Resource": [
-			"acs:oss:*:*:*"
-		],
-		"Condition": {
-			"StringEquals": {
-          		"acs:UserAgent": [
-					"HxSecurityLab"
-				]
-			}
-		}
-	}]
+    "Version": "1",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "oss:GetObject",
+                "oss:GetObjectAcl",
+                "oss:ListObjects",
+                "oss:RestoreObject",
+                "oss:GetVodPlaylist",
+                "oss:ListObjectVersions",
+                "oss:GetObjectVersion",
+                "oss:GetObjectVersionAcl",
+                "oss:RestoreObjectVersion"
+            ],
+            "Principal": [
+                "*"
+            ],
+            "Resource": [
+                "acs:oss:*:*:*/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "acs:UserAgent": [
+                        "test"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "oss:ListObjects",
+                "oss:GetObject"
+            ],
+            "Principal": [
+                "*"
+            ],
+            "Resource": [
+                "acs:oss:*:*:*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "acs:UserAgent": [
+                        "HxSecurityLab"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "oss:GetBucketPolicy"
+            ],
+            "Principal": [
+                "*"
+            ],
+            "Resource": [
+                "acs:oss:*:*:*"
+            ],
+            "Condition": {}
+        }
+    ]
 }
 POLICY
 }
