@@ -1,9 +1,10 @@
 resource "alicloud_instance" "instance" {
   security_groups  = alicloud_security_group.group.*.id
-  instance_type    = data.alicloud_instance_types.types_ds.instance_types.0.id
+  instance_type    = "ecs.e-c1m1.large"
   image_id         = "ubuntu_18_04_64_20G_alibase_20190624.vhd"
   vswitch_id       = alicloud_vswitch.vswitch.id
-  system_disk_size = 20
+  system_disk_size = 40
+  system_disk_category = "cloud_essd"
   instance_name    = "huocorp_terraform_goat_instance"
   depends_on = [
     alicloud_security_group.group,
